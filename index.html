@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Star Wars RPG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class=container class="border border-danger">
+        <div class="row justify-content-center">
+            <h1>STAR WARS: THE RPG</h1>
+        </div>
+        <div class="row justify-content-center">
+            <div id="characterSelect" class="border border-danger">
+                <h2> SELECT YOUR CHARACTER</h2>
+                <img src="./assets/images/luke.jpg" class="img-fluid" style="height: 300px" alt="">
+                <img src="./assets/images/han.jpg" class="img-fluid" style="height: 300px" alt="">
+                <img src="./assets/images/leia.jpg" class="img-fluid" style="height: 300px" alt="">
+                <img src="./assets/images/darth.jpg" class="img-fluid" style="height: 300px" alt="">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div id="battleArena" class="col-md-8 p-3 border border-danger">This is the battlearena!
+                <div id="defender" class="border border-danger">defender goes here</div>
+                <div id="attacker" class="border border-danger">attacker goes here</div>
+                <div id="attacks" class="border border-danger">
+                    <button type="button" class="btn btn-primary">Attack1</button>
+                    <button type="button" class="btn btn-danger">Attack2</button>
+                    <button type="button" class="btn btn-info">Attack3</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+A way to set the initial gamestate/reset the game
+    -display available characters at the top of the screen
+    -clear the battle arena
+    -reset ramping global variables to default values
+
+A way to select a character
+    -move them to the battle arena
+    -set the other characters as potential enemies
+    -display available attacks
+
+A way to attack
+    -buttons for each attack that will run functions that update variables to lower HP and increase ramping attack power
+    -ensure that enemy counter-attacks
+Check for endgame states
+    -if enemy has no HP, remove them from the battle arena and allow enemies to be selectable
+    -if no enemies remain and player's hp > 0, game ends with a win
+    -if player's hp =< 0, game ends with a loss
+When game ends
+    -display You Win! / You Lose!
+    -reset to initial gamestate
+-->
+
+    <script src="./assets/javascript/game.js"></script>
+
+</body>
+
+</html>
