@@ -20,18 +20,26 @@
         </div>
         <div class="row justify-content-center">
             <div id="characterSelect" class="border border-danger">
-                <h2> SELECT YOUR CHARACTER</h2>
-                <img src="./assets/images/luke.jpg" class="img-fluid" style="height: 300px" alt="">
-                <img src="./assets/images/han.jpg" class="img-fluid" style="height: 300px" alt="">
-                <img src="./assets/images/leia.jpg" class="img-fluid" style="height: 300px" alt="">
-                <img src="./assets/images/darth.jpg" class="img-fluid" style="height: 300px" alt="">
+                <div id="characters">
+                    <h2 class="message"> SELECT YOUR CHARACTER</h2>
+                    <img id="luke" src="./assets/images/luke.jpg" class="img-fluid character" style="height: 300px" alt="luke skywalker">
+                    <img id="han" src="./assets/images/han.jpg" class="img-fluid character" style="height: 300px" alt="han solo">
+                    <img id="leia" src="./assets/images/leia.jpg" class="img-fluid character" style="height: 300px" alt="princess leia">
+                    <img id="darth" src="./assets/images/darth.jpg" class="img-fluid character" style="height: 300px" alt="darth vader">
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div id="battleArena" class="col-md-8 p-3 border border-danger">This is the battlearena!
-                <div id="defender" class="border border-danger">defender goes here</div>
-                <div id="attacker" class="border border-danger">attacker goes here</div>
-                <div id="attacks" class="border border-danger">
+            <div id="battleArena" class="col-md-10 p-3 border border-danger">
+                <h2>Battle Arena</h2>
+                <div id="defender" class="border border-danger">
+                    <h3>Defender</h3>
+                </div>
+                <div id="versus"></div>
+                <div id="attacker" class="border border-danger">
+                    <h3>Your Character</h3>
+                </div>
+                <div id="attacks" class="border border-danger mt-3">
                     <button type="button" class="btn btn-primary">Attack1</button>
                     <button type="button" class="btn btn-danger">Attack2</button>
                     <button type="button" class="btn btn-info">Attack3</button>
