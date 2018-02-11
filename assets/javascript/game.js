@@ -180,20 +180,6 @@ $(document).ready(function () {
             $(".restart").on("click", function () {
                 gameReset();
             });
-            // play video of luke's hand being chopped off, music
         };
     });
 });
-
-// if (enemiesRemaining = 0) {
-//     $("h2.message").text("YOU WIN! You've defeated all enemies!");
-//     $(".lukeAttack").hide();
-//     $(".hanAttack").hide();
-//     $(".leiaAttack").hide();
-//     $(".darthAttack").hide();
-//     $(".restart").toggle();
-//     $(".restart").on("click", function () {
-//         gameReset();
-//     });
-//     // play video of the death star explosion, music
-// };
