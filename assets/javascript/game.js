@@ -40,17 +40,26 @@ $(document).ready(function () {
         isAttacker: false,
         isDefender: false,
     };
-    var enemiesRemaining, mainChar, enemy;
+    var mainChar, enemy, enemiesRemaining;
+    var enemiesInitial = 3;
+    var enemiesFought = 0;
     var characterSelected = false;
     var enemySelected = false;
     //function that resets inital character select positions, clears the battleArena, resets character object values with the charResetter function
     function gameReset() {
-        enemiesRemaining = undefined;
+        enemiesInitial = 3;
+        enemiesFought = 0;
         mainChar = undefined;
+        enemy = undefined;
+        enemiesRemaining = undefined;
         characterSelected = false;
-        $("#attacker").empty();
-        $("#defender").empty();
+        enemySelected = false;
+        $("#mainChar").html("<h3>Your Character</h3>");
+        $("#enemy").html("<h3>Enemy</h3>");
         $(".character").show();
+        $("#versus").empty();
+        $(".message").text("SELECT YOUR CHARACTER");
+        $(".restart").hide();
         charResetter(charOne, charTwo, charThree, charFour);
     };
     // functions adjust character object variables
@@ -59,7 +68,6 @@ $(document).ready(function () {
         charGoesHere.currentDmg = undefined;
         charGoesHere.isAttacker = false;
         charGoesHere.isDefender = false;
-        enemySelected = false;
     };
 
     function enemyCharSetup(charGoesHere) {
@@ -67,6 +75,7 @@ $(document).ready(function () {
         charGoesHere.currentDmg = charGoesHere.counterDmg;
         charGoesHere.isDefender = true;
         enemySelected = true;
+        enemiesFought++;
     };
 
     function mainCharSetup(charGoesHere) {
@@ -75,65 +84,116 @@ $(document).ready(function () {
         charGoesHere.isAttacker = true;
         characterSelected = true;
     };
+    // character/enemy select in one function
     $(".character").on("click", function () {
         if (characterSelected === true && enemySelected === false && ($(this).attr("id") === "luke")) {
             $(this).toggle();
-            $("#defender").html('<img src="./assets/images/luke.jpg" style="height: 300px">');
             enemy = charOne;
             enemyCharSetup(enemy);
+            $("#enemy").html('<img src="./assets/images/luke.jpg" style="height: 300px">');
             $("h2.message").text("Defeat current enemey before selecting new enemy");
         } else if (characterSelected === false && enemySelected === false && ($(this).attr("id") === "luke")) {
             $(this).toggle();
-            $("#attacker").html('<img src="./assets/images/luke.jpg" style="height: 300px">');
             mainChar = charOne;
             mainCharSetup(mainChar);
-            $("h2.message").text("Select enemy");
+            $(".lukeAttack").toggle();
+            $("#mainChar").html('<img src="./assets/images/luke.jpg" style="height: 300px">');
+            $("h2.message").text("SELECT ENEMY");
             $("#versus").html('<img src="./assets/images/versus.png" style="height: 150px">');
         }
         if (characterSelected === true && enemySelected === false && ($(this).attr("id") === "han")) {
             $(this).toggle();
-            $("#defender").html('<img src="./assets/images/han.jpg" style="height: 300px">');
             enemy = charTwo;
             enemyCharSetup(enemy);
+            $("#enemy").html('<img src="./assets/images/han.jpg" style="height: 300px">');
             $("h2.message").text("Defeat current enemey before selecting new enemy");
         } else if (characterSelected === false && enemySelected === false && ($(this).attr("id") === "han")) {
             $(this).toggle();
-            $("#attacker").html('<img src="./assets/images/han.jpg" style="height: 300px">');
             mainChar = charTwo;
             mainCharSetup(mainChar);
-            $("h2.message").text("Select enemy");
+            $(".hanAttack").toggle();
+            $("#mainChar").html('<img src="./assets/images/han.jpg" style="height: 300px">');
+            $("h2.message").text("SELECT ENEMY");
             $("#versus").html('<img src="./assets/images/versus.png" style="height: 150px">');
         }
         if (characterSelected === true && enemySelected === false && ($(this).attr("id") === "leia")) {
             $(this).toggle();
-            $("#defender").html('<img src="./assets/images/leia.jpg" style="height: 300px">');
             enemy = charThree;
             enemyCharSetup(enemy);
+            $("#enemy").html('<img src="./assets/images/leia.jpg" style="height: 300px">');
             $("h2.message").text("Defeat current enemey before selecting new enemy");
         } else if (characterSelected === false && enemySelected === false && ($(this).attr("id") === "leia")) {
             $(this).toggle();
-            $("#attacker").html('<img src="./assets/images/leia.jpg" style="height: 300px">');
             mainChar = charThree;
             mainCharSetup(mainChar);
-            $("h2.message").text("Select enemy");
+            $(".leiaAttack").toggle();
+            $("#mainChar").html('<img src="./assets/images/leia.jpg" style="height: 300px">');
+            $("h2.message").text("SELECT ENEMY");
             $("#versus").html('<img src="./assets/images/versus.png" style="height: 150px">');
         }
         if (characterSelected === true && enemySelected === false && ($(this).attr("id") === "darth")) {
             $(this).toggle();
-            $("#defender").html('<img src="./assets/images/darth.jpg" style="height: 300px">');
             enemy = charFour;
             enemyCharSetup(enemy);
+            $("#enemy").html('<img src="./assets/images/darth.jpg" style="height: 300px">');
             $("h2.message").text("Defeat current enemey before selecting new enemy");
         } else if (characterSelected === false && enemySelected === false && ($(this).attr("id") === "darth")) {
             $(this).toggle();
-            $("#attacker").html('<img src="./assets/images/darth.jpg" style="height: 300px">');
             mainChar = charFour;
             mainCharSetup(mainChar);
-            $("h2.message").text("Select enemy");
+            $(".darthAttack").toggle();
+            $("#mainChar").html('<img src="./assets/images/darth.jpg" style="height: 300px">');
+            $("h2.message").text("SELECT ENEMY");
             $("#versus").html('<img src="./assets/images/versus.png" style="height: 150px">');
         }
     });
+    // attack functionality
+    $(".btn").on("click", function () {
+        if (enemySelected === false) return;
+        enemy.currentHp = enemy.currentHp - mainChar.currentDmg;
+        mainChar.currentHp = mainChar.currentHp - enemy.currentDmg;
+        mainChar.currentDmg = mainChar.currentDmg + mainChar.initialDmg;
+        if (enemy.currentHp <= 0) {
+            enemiesRemaining = enemiesInitial - enemiesFought;
+            $("#enemy").empty();
+            enemySelected = false;
+            $("h2.message").text("SELECT ENEMY");
+        }
+        if (enemy.currentHp <= 0 && enemiesRemaining === 0) {
+            $("h2.message").text("YOU WIN! You've defeated all enemies!");
+            $(".lukeAttack").hide();
+            $(".hanAttack").hide();
+            $(".leiaAttack").hide();
+            $(".darthAttack").hide();
+            $(".restart").toggle();
+            $(".restart").on("click", function () {
+                gameReset();
+            });
+        }
+        if (mainChar.currentHp <= 0) {
+            $("h2.message").text("YOU LOSE!");
+            $(".lukeAttack").hide();
+            $(".hanAttack").hide();
+            $(".leiaAttack").hide();
+            $(".darthAttack").hide();
+            $(".restart").toggle();
+            $(".restart").on("click", function () {
+                gameReset();
+            });
+            // play video of luke's hand being chopped off, music
+        };
+    });
 });
-//if (enemy.currentHp = 0){enemiesRemaining--; charResetter(enemy); $("h2.message").text("Select enemy");}
-//if (enemiesRemaining = 0){} game ends in win
-//if (mainChar.currentHp <= 0){} game ends in loss
+
+// if (enemiesRemaining = 0) {
+//     $("h2.message").text("YOU WIN! You've defeated all enemies!");
+//     $(".lukeAttack").hide();
+//     $(".hanAttack").hide();
+//     $(".leiaAttack").hide();
+//     $(".darthAttack").hide();
+//     $(".restart").toggle();
+//     $(".restart").on("click", function () {
+//         gameReset();
+//     });
+//     // play video of the death star explosion, music
+// };

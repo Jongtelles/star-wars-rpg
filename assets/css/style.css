@@ -1,11 +1,21 @@
-body{
+body {
     text-align: center;
     background-image: url(../images/starfield.png);
     font-family: 'Space Mono', monospace;
 }
-#battleArena{
+
+#battleArena {
     background-image: url(../images/battlearena.jpg);
+    border: solid 2px yellow;
 }
-h1, h2, h3{
-color: yellow;
+
+h1,
+h2,
+h3 {
+    color: yellow;
+}
+
+.btn {
+    display: none;
+    font-weight: bold;
 }
