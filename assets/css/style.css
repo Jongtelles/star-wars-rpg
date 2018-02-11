@@ -3,12 +3,24 @@ body {
     background-image: url(../images/starfield.png);
     font-family: 'Space Mono', monospace;
 }
-
 #battleArena {
     background-image: url(../images/battlearena.jpg);
     border: solid 2px yellow;
 }
-
+#combatLogAttack{
+    display: none;
+    font-size: small;
+    color: yellow;
+}
+#combatLogDefend{
+    display: none;
+    font-size: small;
+    color: yellow;
+}
+#combatLogContainer{
+    display: none;
+    color: yellow;
+}
 h1,
 h2,
 h3 {

@@ -59,6 +59,12 @@ $(document).ready(function () {
         $(".character").show();
         $("#versus").empty();
         $(".message").text("SELECT YOUR CHARACTER");
+        $("#combatLogAttack").hide();
+        $("#combatLogDefend").hide();
+        $("#combatLogContainer").hide();
+        $("#combatLogAttack").html("<h3>Combat Log</h3>");
+        $("#combatLogDefend").text("");
+        $("#combatLogAttack").removeClass("border-top");
         $(".restart").hide();
         charResetter(charOne, charTwo, charThree, charFour);
     };
@@ -83,6 +89,13 @@ $(document).ready(function () {
         charGoesHere.currentDmg = charGoesHere.initialDmg;
         charGoesHere.isAttacker = true;
         characterSelected = true;
+        $("#combatLogAttack").toggle();
+        $("#combatLogDefend").toggle();
+        $("#combatLogContainer").toggle();
+    };
+
+    function turnBorderOn() {
+        $("#combatLogAttack").addClass("border-top")
     };
     // character/enemy select in one function
     $(".character").on("click", function () {
@@ -149,10 +162,13 @@ $(document).ready(function () {
     });
     // attack functionality
     $(".btn").on("click", function () {
+        $(this).one(turnBorderOn());
         if (enemySelected === false) return;
         enemy.currentHp = enemy.currentHp - mainChar.currentDmg;
         mainChar.currentHp = mainChar.currentHp - enemy.currentDmg;
         mainChar.currentDmg = mainChar.currentDmg + mainChar.initialDmg;
+        $("#combatLogAttack").text(mainChar.name + " hits " + enemy.name + " for " + mainChar.currentDmg)
+        $("#combatLogDefend").text(enemy.name + " hits " + mainChar.name + " for " + enemy.currentDmg);
         if (enemy.currentHp <= 0) {
             enemiesRemaining = enemiesInitial - enemiesFought;
             $("#enemy").empty();
@@ -165,6 +181,10 @@ $(document).ready(function () {
             $(".hanAttack").hide();
             $(".leiaAttack").hide();
             $(".darthAttack").hide();
+            $("#combatLogAttack").removeClass("border-top");
+            $("#combatLogAttack").html("<h3>You Win!</h3>");
+            $("#combatLogDefend").text("");
+            $("#combatLogAttack").removeClass("border-top");
             $(".restart").toggle();
             $(".restart").on("click", function () {
                 gameReset();
@@ -176,6 +196,10 @@ $(document).ready(function () {
             $(".hanAttack").hide();
             $(".leiaAttack").hide();
             $(".darthAttack").hide();
+            $("#combatLogAttack").removeClass("border-top");
+            $("#combatLogAttack").html("<h3>You Lose!</h3>");
+            $("#combatLogDefend").text("");
+            $("#combatLogAttack").removeClass("border-top");
             $(".restart").toggle();
             $(".restart").on("click", function () {
                 gameReset();

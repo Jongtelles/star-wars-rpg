@@ -9,10 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -38,7 +36,12 @@
                     <h3>Enemy</h3>
                 </div>
                 <div id="versus">
-                    <span id="combatLog"></span>
+                </div>
+                <div id="combatLogContainer" class="col-md-4 mx-auto mt-1 border border-alert">
+                    <div id="combatLogDefend" class="col mx-auto"></div>
+                    <div id="combatLogAttack" class="col mx-auto">
+                        <h3>Combat Log</h3>
+                    </div>
                 </div>
                 <div id="mainChar" class="col-md-4 mx-auto p-3 justify-content-center border border-success m-1 rounded">
                     <h3>Your Character</h3>
