@@ -22,10 +22,18 @@
             <div id="characterSelect">
                 <div id="characters">
                     <h2 class="message">SELECT YOUR CHARACTER</h2>
-                    <img id="luke" src="./assets/images/luke.jpg" class="img-fluid character" style="height: 300px" alt="luke skywalker">
-                    <img id="han" src="./assets/images/han.jpg" class="img-fluid character" style="height: 300px" alt="han solo">
-                    <img id="leia" src="./assets/images/leia.jpg" class="img-fluid character" style="height: 300px" alt="princess leia">
-                    <img id="darth" src="./assets/images/darth.jpg" class="img-fluid character" style="height: 300px" alt="darth vader">
+                    <span class="luke">
+                        <img id="luke" src="./assets/images/luke.jpg" class="img-fluid character" style="height: 300px" alt="luke skywalker">
+                    </span>
+                    <span class="han">
+                        <img id="han" src="./assets/images/han.jpg" class="img-fluid character" style="height: 300px" alt="han solo">
+                    </span>
+                    <span class="leia">
+                        <img id="leia" src="./assets/images/leia.jpg" class="img-fluid character" style="height: 300px" alt="princess leia">
+                    </span>
+                    <span class="darth">
+                        <img id="darth" src="./assets/images/darth.jpg" class="img-fluid character" style="height: 300px" alt="darth vader">
+                    </span>
                 </div>
             </div>
         </div>
@@ -56,21 +64,7 @@
             </div>
         </div>
     </div>
-    <!-- 
-A way to attack
-    -buttons for each attack that will run functions that update variables to lower HP and increase ramping attack power
-    -ensure that enemy counter-attacks
-Check for endgame states
-    -if enemy has no HP, remove them from the battle arena and allow enemies to be selectable
-    -if no enemies remain and player's hp > 0, game ends with a win
-    -if player's hp =< 0, game ends with a loss
-When game ends
-    -display You Win! / You Lose!
-    -reset to initial gamestate
--->
-
     <script src="./assets/javascript/game.js"></script>
-
 </body>
 
 </html>
