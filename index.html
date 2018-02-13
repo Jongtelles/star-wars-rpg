@@ -2,8 +2,7 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <title>Star Wars RPG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -20,39 +19,70 @@
         </div>
         <div class="row justify-content-center">
             <div id="characterSelect">
-                <div id="characters">
-                    <h2 class="message">SELECT YOUR CHARACTER</h2>
-                    <span class="luke">
-                        <img id="luke" src="./assets/images/luke.jpg" class="img-fluid character" style="height: 300px" alt="luke skywalker">
-                    </span>
-                    <span class="han">
-                        <img id="han" src="./assets/images/han.jpg" class="img-fluid character" style="height: 300px" alt="han solo">
-                    </span>
-                    <span class="leia">
-                        <img id="leia" src="./assets/images/leia.jpg" class="img-fluid character" style="height: 300px" alt="princess leia">
-                    </span>
-                    <span class="darth">
-                        <img id="darth" src="./assets/images/darth.jpg" class="img-fluid character" style="height: 300px" alt="darth vader">
-                    </span>
+                <h2 class="message">SELECT YOUR CHARACTER</h2>
+                <div id="characters" class="row p-1">
+                    <div class="col-sm-12 col-md-3 justify-content-center">
+                        <img id="luke" src="./assets/images/luke.jpg" class="character row charRow img-fluid" alt="luke skywalker">
+                        <div class="lukeSelectHp row justify-content-center border border-warning rounded">
+                            <span class="lukeHpDisplay"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 justify-content-center">
+                        <img id="han" src="./assets/images/han.jpg" class="character row charRow img-fluid" alt="han solo">
+                        <div class="hanSelectHp row justify-content-center border border-warning rounded">
+                            <span class="hanHpDisplay"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 justify-content-center">
+                        <img id="leia" src="./assets/images/leia.jpg" class="character row charRow img-fluid" alt="princess leia organa">
+                        <div class="leiaSelectHp row justify-content-center border border-warning rounded">
+                            <span class="leiaHpDisplay"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 justify-content-center">
+                        <img id="darth" src="./assets/images/darth.jpg" class="character row charRow img-fluid" alt="darth vader">
+                        <div class="darthSelectHp row justify-content-center border border-warning rounded">
+                            <span class="darthHpDisplay"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div id="battleArena" class="col-md-10 p-3 justify-content-center rounded">
-                <h2>Battle Arena</h2>
-                <div id="enemy" class="col-md-4 mx-auto p-3 justify-content-center border border-danger m-1 rounded">
-                    <h3>Enemy</h3>
+            <div id="battleArena" class="col-md-10 mt-3 mb-3 p-2 justify-content-center border border-warning rounded">
+                <div class="row justify-content-center">
+                    <h2 class="col-md-4 mx-auto battleArenaText border border-warning rounded">
+                        Battle Arena</h2>
+                </div>
+                <div id="enemy" class="col-md-4 mx-auto p-2 justify-content-center border border-danger m-1 rounded">
+                    <span id="enemyImage"></span>
+                    <span id="enemyText">
+                        <h3>Enemy</h3>
+                    </span>
+                    <div class="row">
+                        <div class="enemyHp col-md-4 mx-auto justify-content-center border border-warning rounded">
+                            <span class="enemyHpDisplay"></span>
+                        </div>
+                    </div>
                 </div>
                 <div id="versus">
                 </div>
-                <div id="combatLogContainer" class="col-md-4 mx-auto mt-1 border border-alert">
+                <div id="combatLogContainer" class="col-md-4 mx-auto mt-1 border border-alert rounded">
                     <div id="combatLogDefend" class="col mx-auto"></div>
                     <div id="combatLogAttack" class="col mx-auto">
-                        <h3>Combat Log</h3>
+                        <h4>Combat Log</h4>
                     </div>
                 </div>
-                <div id="mainChar" class="col-md-4 mx-auto p-3 justify-content-center border border-success m-1 rounded">
-                    <h3>Your Character</h3>
+                <div id="mainChar" class="col-md-4 mx-auto p-2 justify-content-center border border-success m-1 rounded">
+                    <span id="mainCharImage"></span>
+                    <span id="mainCharText">
+                        <h3>Your Character</h3>
+                    </span>
+                    <div class="row">
+                        <div class="mainCharHp col-md-4 mx-auto justify-content-center border border-warning rounded">
+                            <span class="mainCharHpDisplay"></span>
+                        </div>
+                    </div>
                 </div>
                 <div id="attacks" class="mt-3">
                     <button type="button" class="btn btn-success lukeAttack">Attack</button>
@@ -64,6 +94,22 @@
             </div>
         </div>
     </div>
+    <footer class="footer mt-4 bg-dark">
+        <div class="container p-2">
+            <span class="row justify-content-center">
+                <a href="https://github.com/Jongtelles" target="_blank">
+                    <img src="./assets/images/github-icon.png" class="img-fluid" alt="github icon">
+                </a>
+                <a href="https://www.linkedin.com/in/jongtelles/" target="_blank">
+                    <img src="./assets/images/linkedin-icon.png" class="img-fluid" alt="linkedin icon">
+                </a>
+                <a href="https://stackoverflow.com/users/9190290/jon-gt?tab=profile" target="_blank">
+                    <img src="./assets/images/stackoverflow-icon.png" class="img-fluid" alt="stackoverflow icon">
+                </a>
+            </span>
+            <span class="row justify-content-center">Copyright © 2018 Jon Telles</span>
+        </div>
+    </footer>
     <script src="./assets/javascript/game.js"></script>
 </body>
 

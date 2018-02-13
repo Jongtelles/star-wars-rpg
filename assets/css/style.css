@@ -2,32 +2,74 @@ body {
     text-align: center;
     background-image: url(../images/starfield.png);
     font-family: 'Space Mono', monospace;
+    color: yellow;
 }
+
 #battleArena {
     background-image: url(../images/battlearena.jpg);
-    border: solid 2px yellow;
+    height: 100%;
 }
-#combatLogAttack{
+
+#combatLogAttack {
     display: none;
     font-size: small;
     color: yellow;
 }
-#combatLogDefend{
+
+#combatLogDefend {
     display: none;
     font-size: small;
     color: yellow;
 }
-#combatLogContainer{
+
+#combatLogContainer {
     display: none;
     color: yellow;
 }
-h1,
-h2,
-h3 {
-    color: yellow;
+
+.charRow {
+    margin: 0;
+}
+
+.lukeHpDisplay,
+.hanHpDisplay,
+.leiaHpDisplay,
+.darthHpDisplay,
+.mainCharHpDisplay,
+.enemyHpDisplay {
+    background-color: rgba(27, 27, 27, 0.719);
+}
+
+.mainCharHp,
+.enemyHp {
+    display: none;
+}
+
+#enemy {
+    background-color: rgba(27, 27, 27, 0.719);
+}
+
+#mainChar {
+    background-color: rgba(27, 27, 27, 0.719);
+}
+
+#combatLogContainer {
+    background-color: rgba(27, 27, 27, 0.719);
 }
 
 .btn {
     display: none;
     font-weight: bold;
+}
+
+.footer {
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.battleArenaText {
+    background-color: rgba(27, 27, 27, 0.719);
 }

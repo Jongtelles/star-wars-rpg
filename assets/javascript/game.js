@@ -3,7 +3,7 @@ $(document).ready(function () {
   var charOne = {
     name: "Luke",
     counterDmg: 5,
-    maxHp: 100,
+    maxHp: 120,
     currentDmg: undefined,
     initialDmg: 10,
     currentHp: undefined,
@@ -13,7 +13,7 @@ $(document).ready(function () {
   var charTwo = {
     name: "Han",
     counterDmg: 5,
-    maxHp: 100,
+    maxHp: 130,
     currentDmg: undefined,
     initialDmg: 10,
     currentHp: undefined,
@@ -23,7 +23,7 @@ $(document).ready(function () {
   var charThree = {
     name: "Leia",
     counterDmg: 5,
-    maxHp: 100,
+    maxHp: 140,
     currentDmg: undefined,
     initialDmg: 10,
     currentHp: undefined,
@@ -33,7 +33,7 @@ $(document).ready(function () {
   var charFour = {
     name: "Darth",
     counterDmg: 5,
-    maxHp: 100,
+    maxHp: 150,
     currentDmg: undefined,
     initialDmg: 10,
     currentHp: undefined,
@@ -45,6 +45,12 @@ $(document).ready(function () {
   var enemiesFought = 0;
   var characterSelected = false;
   var enemySelected = false;
+
+  $(".lukeHpDisplay").text("HP: " + charOne.maxHp);
+  $(".hanHpDisplay").text("HP: " + charTwo.maxHp);
+  $(".leiaHpDisplay").text("HP: " + charThree.maxHp);
+  $(".darthHpDisplay").text("HP: " + charFour.maxHp);
+
   // function that resets inital character select positions, clears the battleArena, resets character object values with the charResetter function
   function gameReset() {
     enemiesInitial = 3;
@@ -54,21 +60,34 @@ $(document).ready(function () {
     enemiesRemaining = undefined;
     characterSelected = false;
     enemySelected = false;
-    $("#mainChar").html("<h3>Your Character</h3>");
-    $("#enemy").html("<h3>Enemy</h3>");
+    $("#mainCharText").html('<h3>Your Character</h3>');
+    $("#mainCharImage").empty();
+    $("#enemyText").html('<h3>Enemy</h3>');
+    $("#enemyImage").empty();
+    $(".enemyHp").hide();
+    $(".mainCharHp").hide();
     $(".character").show();
+    $(".lukeHpDisplay").show();
+    $(".hanHpDisplay").show();
+    $(".leiaHpDisplay").show();
+    $(".darthHpDisplay").show();
+    $(".lukeSelectHp").show();
+    $(".hanSelectHp").show();
+    $(".leiaSelectHp").show();
+    $(".darthSelectHp").show();
+    $("#enemy").show();
     $("#versus").empty();
     $(".message").text("SELECT YOUR CHARACTER");
     $("#combatLogAttack").hide();
     $("#combatLogDefend").hide();
     $("#combatLogContainer").hide();
-    $("#combatLogAttack").html("<h3>Combat Log</h3>");
+    $("#combatLogAttack").html("<h4>Combat Log</h4>");
     $("#combatLogDefend").text("");
     $("#combatLogAttack").removeClass("border-top");
     $(".restart").hide();
     charResetter(charOne, charTwo, charThree, charFour);
   }
-  // functions adjust character object variables 
+  // functions adjust character object variables
   function charResetter(charGoesHere) {
     charGoesHere.currentHp = undefined;
     charGoesHere.currentDmg = undefined;
@@ -82,6 +101,8 @@ $(document).ready(function () {
     charGoesHere.isDefender = true;
     enemySelected = true;
     enemiesFought++;
+    $(".enemyHp").show();
+    $(".enemyHpDisplay").html("HP: " + enemy.currentHp);
   }
 
   function mainCharSetup(charGoesHere) {
@@ -92,6 +113,8 @@ $(document).ready(function () {
     $("#combatLogAttack").toggle();
     $("#combatLogDefend").toggle();
     $("#combatLogContainer").toggle();
+    $(".mainCharHp").toggle();
+    $(".mainCharHpDisplay").html("HP: " + mainChar.currentHp);
   }
   // fixes style for the combat log
   function turnBorderOn() {
@@ -107,10 +130,16 @@ $(document).ready(function () {
       $(this).toggle();
       enemy = charOne;
       enemyCharSetup(enemy);
-      $("#enemy").html(
+      $("#enemyImage").html(
         '<img src="./assets/images/luke.jpg" style="height: 300px">'
       );
-      $("h2.message").text("Defeat current enemey before selecting new enemy");
+      $("#enemyText").empty();
+      $("h2.message").text("Defeat current enemy before selecting new opponent");
+      $("#combatLogAttack").html("<h4>Combat Log</h4>");
+      $("#combatLogDefend").text("");
+      $(".lukeHpDisplay").toggle();
+      $(".lukeSelectHp").toggle();
+      $("#enemy").show();
     } else if (
       characterSelected === false &&
       enemySelected === false &&
@@ -120,13 +149,16 @@ $(document).ready(function () {
       mainChar = charOne;
       mainCharSetup(mainChar);
       $(".lukeAttack").toggle();
-      $("#mainChar").html(
+      $("#mainCharImage").prepend(
         '<img src="./assets/images/luke.jpg" style="height: 300px">'
       );
-      $("h2.message").text("SELECT ENEMY");
+      $("#mainCharText").empty();
+      $("h2.message").text("SELECT OPPONENT");
       $("#versus").html(
-        '<img src="./assets/images/versus.png" style="height: 150px">'
+        '<img src="./assets/images/versus.png" style="height: 100px">'
       );
+      $(".lukeHpDisplay").toggle();
+      $(".lukeSelectHp").toggle();
     }
     if (
       characterSelected === true &&
@@ -136,10 +168,16 @@ $(document).ready(function () {
       $(this).toggle();
       enemy = charTwo;
       enemyCharSetup(enemy);
-      $("#enemy").html(
+      $("#enemyImage").prepend(
         '<img src="./assets/images/han.jpg" style="height: 300px">'
       );
-      $("h2.message").text("Defeat current enemey before selecting new enemy");
+      $("#enemyText").empty();
+      $("h2.message").text("defeat current enemy before selecting new opponent");
+      $("#combatLogAttack").html("<h4>Combat Log</h4>");
+      $("#combatLogDefend").text("");
+      $(".hanHpDisplay").toggle();
+      $(".hanSelectHp").toggle();
+      $("#enemy").show();
     } else if (
       characterSelected === false &&
       enemySelected === false &&
@@ -149,13 +187,16 @@ $(document).ready(function () {
       mainChar = charTwo;
       mainCharSetup(mainChar);
       $(".hanAttack").toggle();
-      $("#mainChar").html(
+      $("#mainCharImage").prepend(
         '<img src="./assets/images/han.jpg" style="height: 300px">'
       );
-      $("h2.message").text("SELECT ENEMY");
+      $("h2.message").text("SELECT OPPONENT");
+      $("#mainCharText").empty();
       $("#versus").html(
-        '<img src="./assets/images/versus.png" style="height: 150px">'
+        '<img src="./assets/images/versus.png" style="height: 100px">'
       );
+      $(".hanHpDisplay").toggle();
+      $(".hanSelectHp").toggle();
     }
     if (
       characterSelected === true &&
@@ -165,10 +206,16 @@ $(document).ready(function () {
       $(this).toggle();
       enemy = charThree;
       enemyCharSetup(enemy);
-      $("#enemy").html(
+      $("#enemyImage").prepend(
         '<img src="./assets/images/leia.jpg" style="height: 300px">'
       );
-      $("h2.message").text("Defeat current enemey before selecting new enemy");
+      $("#enemyText").empty();
+      $("h2.message").text("defeat current enemy before selecting new opponent");
+      $("#combatLogAttack").html("<h4>Combat Log</h4>");
+      $("#combatLogDefend").text("");
+      $(".leiaHpDisplay").toggle();
+      $(".leiaSelectHp").toggle();
+      $("#enemy").show();
     } else if (
       characterSelected === false &&
       enemySelected === false &&
@@ -178,13 +225,16 @@ $(document).ready(function () {
       mainChar = charThree;
       mainCharSetup(mainChar);
       $(".leiaAttack").toggle();
-      $("#mainChar").html(
+      $("#mainCharImage").prepend(
         '<img src="./assets/images/leia.jpg" style="height: 300px">'
       );
-      $("h2.message").text("SELECT ENEMY");
+      $("h2.message").text("SELECT OPPONENT");
+      $("#mainCharText").empty();
       $("#versus").html(
-        '<img src="./assets/images/versus.png" style="height: 150px">'
+        '<img src="./assets/images/versus.png" style="height: 100px">'
       );
+      $(".leiaHpDisplay").toggle();
+      $(".leiaSelectHp").toggle();
     }
     if (
       characterSelected === true &&
@@ -194,10 +244,16 @@ $(document).ready(function () {
       $(this).toggle();
       enemy = charFour;
       enemyCharSetup(enemy);
-      $("#enemy").html(
+      $("#enemyImage").prepend(
         '<img src="./assets/images/darth.jpg" style="height: 300px">'
       );
-      $("h2.message").text("Defeat current enemey before selecting new enemy");
+      $("#enemyText").empty();
+      $("h2.message").text("defeat current enemy before selecting new opponent");
+      $("#combatLogAttack").html("<h4>Combat Log</h4>");
+      $("#combatLogDefend").text("");
+      $(".darthHpDisplay").toggle();
+      $(".darthSelectHp").toggle();
+      $("#enemy").show();
     } else if (
       characterSelected === false &&
       enemySelected === false &&
@@ -207,22 +263,27 @@ $(document).ready(function () {
       mainChar = charFour;
       mainCharSetup(mainChar);
       $(".darthAttack").toggle();
-      $("#mainChar").html(
+      $("#mainCharImage").prepend(
         '<img src="./assets/images/darth.jpg" style="height: 300px">'
       );
-      $("h2.message").text("SELECT ENEMY");
+      $("h2.message").text("SELECT OPPONENT");
+      $("#mainCharText").empty();
       $("#versus").html(
-        '<img src="./assets/images/versus.png" style="height: 150px">'
+        '<img src="./assets/images/versus.png" style="height: 100px">'
       );
+      $(".darthHpDisplay").toggle();
+      $(".darthSelectHp").toggle();
     }
   });
-  // attack functionality
+  // attack button functionality
   $(".btn").on("click", function () {
-    $(this).one(turnBorderOn());
     if (enemySelected === false) return;
+    $(this).one(turnBorderOn());
     enemy.currentHp = enemy.currentHp - mainChar.currentDmg;
     mainChar.currentHp = mainChar.currentHp - enemy.currentDmg;
     mainChar.currentDmg = mainChar.currentDmg + mainChar.initialDmg;
+    $(".mainCharHpDisplay").html("HP: " + mainChar.currentHp);
+    $(".enemyHpDisplay").html("HP: " + enemy.currentHp);
     $("#combatLogAttack").text(
       mainChar.name + " hits " + enemy.name + " for " + mainChar.currentDmg
     );
@@ -232,9 +293,14 @@ $(document).ready(function () {
     // if the enemy drops below 0hp, remove them from battlearena and allow next enemy to be selected
     if (enemy.currentHp <= 0) {
       enemiesRemaining = enemiesInitial - enemiesFought;
-      $("#enemy").empty();
+      $("#enemyImage").empty();
+      $(".enemyHp").hide();
+      $("#enemy").hide();
       enemySelected = false;
-      $("h2.message").text("SELECT ENEMY");
+      $("h2.message").text("SELECT OPPONENT");
+      $("#combatLogAttack").removeClass("border-top");
+      $("#combatLogAttack").html("<h4>Select next opponent</h4>");
+      $("#combatLogDefend").text("");
     }
     // game end conditions, if there's no enemies remaining trigger game won
     if (enemy.currentHp <= 0 && enemiesRemaining === 0) {
@@ -243,10 +309,11 @@ $(document).ready(function () {
       $(".hanAttack").hide();
       $(".leiaAttack").hide();
       $(".darthAttack").hide();
+      $("#enemy").hide();
+      $("#versus").empty();
       $("#combatLogAttack").removeClass("border-top");
-      $("#combatLogAttack").html("<h3>You Win!</h3>");
+      $("#combatLogAttack").html("<h4>You Win!</h4>");
       $("#combatLogDefend").text("");
-      $("#combatLogAttack").removeClass("border-top");
       $(".restart").toggle();
       $(".restart").on("click", function () {
         gameReset();
@@ -259,10 +326,10 @@ $(document).ready(function () {
       $(".hanAttack").hide();
       $(".leiaAttack").hide();
       $(".darthAttack").hide();
+      $("#versus").empty();
       $("#combatLogAttack").removeClass("border-top");
-      $("#combatLogAttack").html("<h3>You Lose!</h3>");
+      $("#combatLogAttack").html("<h4>You Lose!</h4>");
       $("#combatLogDefend").text("");
-      $("#combatLogAttack").removeClass("border-top");
       $(".restart").toggle();
       $(".restart").on("click", function () {
         gameReset();
