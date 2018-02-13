@@ -1,44 +1,36 @@
 $(document).ready(function () {
-  // setting initial variables
+  // setting initial variables, randomizing them between a range! Every game will play out differently because of this, but it'll be harder to "figure out" the game
   var charOne = {
     name: "Luke",
-    counterDmg: 5,
-    maxHp: 120,
+    counterDmg: (Math.floor(Math.random() * (22 - 8 + 1)) + 8),
+    maxHp: (Math.floor(Math.random() * (150 - 100 + 1)) + 100),
+    initialDmg: (Math.floor(Math.random() * (13 - 8 + 1)) + 8),
     currentDmg: undefined,
-    initialDmg: 10,
     currentHp: undefined,
-    isAttacker: false,
-    isDefender: false
   };
   var charTwo = {
     name: "Han",
-    counterDmg: 5,
-    maxHp: 130,
+    counterDmg: (Math.floor(Math.random() * (22 - 8 + 1)) + 8),
+    maxHp: (Math.floor(Math.random() * (150 - 100 + 1)) + 100),
+    initialDmg: (Math.floor(Math.random() * (13 - 8 + 1)) + 8),
     currentDmg: undefined,
-    initialDmg: 10,
     currentHp: undefined,
-    isAttacker: false,
-    isDefender: false
   };
   var charThree = {
     name: "Leia",
-    counterDmg: 5,
-    maxHp: 140,
+    counterDmg: (Math.floor(Math.random() * (22 - 8 + 1)) + 8),
+    maxHp: (Math.floor(Math.random() * (150 - 100 + 1)) + 100),
+    initialDmg: (Math.floor(Math.random() * (13 - 8 + 1)) + 8),
     currentDmg: undefined,
-    initialDmg: 10,
     currentHp: undefined,
-    isAttacker: false,
-    isDefender: false
   };
   var charFour = {
     name: "Darth",
-    counterDmg: 5,
-    maxHp: 150,
+    counterDmg: (Math.floor(Math.random() * (22 - 8 + 1)) + 8),
+    maxHp: (Math.floor(Math.random() * (150 - 100 + 1)) + 100),
+    initialDmg: (Math.floor(Math.random() * (13 - 8 + 1)) + 8),
     currentDmg: undefined,
-    initialDmg: 10,
     currentHp: undefined,
-    isAttacker: false,
-    isDefender: false
   };
   var mainChar, enemy, enemiesRemaining;
   var enemiesInitial = 3;
@@ -91,14 +83,14 @@ $(document).ready(function () {
   function charResetter(charGoesHere) {
     charGoesHere.currentHp = undefined;
     charGoesHere.currentDmg = undefined;
-    charGoesHere.isAttacker = false;
-    charGoesHere.isDefender = false;
+    charGoesHere.counterDmg = (Math.floor(Math.random() * (22 - 8 + 1)) + 8);
+    charGoesHere.maxHp = (Math.floor(Math.random() * (150 - 100 + 1)) + 100);
+    charGoesHere.initialDmg = (Math.floor(Math.random() * (13 - 8 + 1)) + 8);
   }
 
   function enemyCharSetup(charGoesHere) {
     charGoesHere.currentHp = charGoesHere.maxHp;
     charGoesHere.currentDmg = charGoesHere.counterDmg;
-    charGoesHere.isDefender = true;
     enemySelected = true;
     enemiesFought++;
     $(".enemyHp").show();
@@ -108,7 +100,6 @@ $(document).ready(function () {
   function mainCharSetup(charGoesHere) {
     charGoesHere.currentHp = charGoesHere.maxHp;
     charGoesHere.currentDmg = charGoesHere.initialDmg;
-    charGoesHere.isAttacker = true;
     characterSelected = true;
     $("#combatLogAttack").toggle();
     $("#combatLogDefend").toggle();
@@ -314,7 +305,7 @@ $(document).ready(function () {
       $("#combatLogAttack").removeClass("border-top");
       $("#combatLogAttack").html("<h4>You Win!</h4>");
       $("#combatLogDefend").text("");
-      $(".restart").toggle();
+      $(".restart").show();
       $(".restart").on("click", function () {
         gameReset();
       });
@@ -330,7 +321,7 @@ $(document).ready(function () {
       $("#combatLogAttack").removeClass("border-top");
       $("#combatLogAttack").html("<h4>You Lose!</h4>");
       $("#combatLogDefend").text("");
-      $(".restart").toggle();
+      $(".restart").show();
       $(".restart").on("click", function () {
         gameReset();
       });
